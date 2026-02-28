@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Milk Rate Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f6ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            width: 320px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #3f51b5;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #303f9f;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 17px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Milk Rate Calculator</h2>
+
+    <input type="number" id="milk" placeholder="Milk (litres)" step="0.01">
+    <input type="number" id="fat" placeholder="Fat" step="0.01">
+    <input type="number" id="ratePerFat" placeholder="Rate per Fat" step="0.01">
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculate() {
+        const milk = parseFloat(document.getElementById("milk").value);
+        const fat = parseFloat(document.getElementById("fat").value);
+        const ratePerFat = parseFloat(document.getElementById("ratePerFat").value);
+
+        if (isNaN(milk) || isNaN(fat) || isNaN(ratePerFat)) {
+            document.getElementById("result").innerText =
+                "Please enter all values";
+            return;
+        }
+
+        const rateMilk = fat * ratePerFat;
+        const totalAmount = milk * rateMilk;
+
+        document.getElementById("result").innerHTML =
+            `Rate per Milk: ₹${rateMilk.toFixed(2)}<br>
+             Total Amount: ₹${totalAmount.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>
